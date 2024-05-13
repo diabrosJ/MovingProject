@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class TopDownAimRotation : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer armRenderer;
-    [SerializeField] private Transform armPrivot;
 
-    [SerializeField] private SpriteRenderer characterRnderer;
+    [SerializeField] private SpriteRenderer characterRnderer1;
+    [SerializeField] private SpriteRenderer characterRnderer2;
 
     private TopDownController controller;
 
     private void Awake()
     {
-         controller = GetComponent<TopDownController>();
+        controller = GetComponent<TopDownController>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         controller.OnLookEvent += OnAim;
@@ -30,8 +29,8 @@ public class TopDownAimRotation : MonoBehaviour
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        characterRnderer.flipX = Mathf.Abs(rotZ) > 90f;
+        characterRnderer1.flipX = Mathf.Abs(rotZ) > 90f;
+        characterRnderer2.flipX = Mathf.Abs(rotZ) > 90f;
 
-        armPrivot.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }
